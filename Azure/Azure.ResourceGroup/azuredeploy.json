@@ -178,18 +178,6 @@
       }
     },
     {
-      "type": "Microsoft.Sql/servers/keys",
-      "apiVersion": "2015-05-01-preview",
-      "name": "[concat(parameters('sql_server_name'), '/ServiceManaged')]",
-      "dependsOn": [
-        "[resourceId('Microsoft.Sql/servers', parameters('sql_server_name'))]"
-      ],
-      "kind": "servicemanaged",
-      "properties": {
-        "serverKeyType": "ServiceManaged"
-      }
-    },
-    {
       "type": "Microsoft.Storage/storageAccounts/blobServices",
       "apiVersion": "2019-04-01",
       "name": "[concat(parameters('storage_account_name'), '/default')]",
