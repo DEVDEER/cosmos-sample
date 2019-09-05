@@ -582,66 +582,6 @@
       }
     },
     {
-      "type": "Microsoft.Web/sites/deployments",
-      "apiVersion": "2016-08-01",
-      "name": "[concat(parameters('function_account_name'), '/71b439431b8e4fab9293805633760d3a')]",
-      "location": "West Europe",
-      "dependsOn": [
-        "[resourceId('Microsoft.Web/sites', parameters('function_account_name'))]"
-      ],
-      "properties": {
-        "id": "71b439431b8e4fab9293805633760d3a",
-        "status": 4,
-        "author_email": "N/A",
-        "author": "VS Code",
-        "deployer": "Push-Deployer",
-        "message": "Created via a push deployment",
-        "start_time": "2019-09-05T14:45:37.5896918Z",
-        "end_time": "2019-09-05T14:45:50.427381Z",
-        "active": false
-      }
-    },
-    {
-      "type": "Microsoft.Web/sites/deployments",
-      "apiVersion": "2016-08-01",
-      "name": "[concat(parameters('function_account_name'), '/7ecdf07fe89d438f9c3567b0f1f53fdb')]",
-      "location": "West Europe",
-      "dependsOn": [
-        "[resourceId('Microsoft.Web/sites', parameters('function_account_name'))]"
-      ],
-      "properties": {
-        "id": "7ecdf07fe89d438f9c3567b0f1f53fdb",
-        "status": 4,
-        "author_email": "N/A",
-        "author": "VS Code",
-        "deployer": "Push-Deployer",
-        "message": "Created via a push deployment",
-        "start_time": "2019-09-05T14:50:45.4455171Z",
-        "end_time": "2019-09-05T14:50:56.2289754Z",
-        "active": true
-      }
-    },
-    {
-      "type": "Microsoft.Web/sites/deployments",
-      "apiVersion": "2016-08-01",
-      "name": "[concat(parameters('function_account_name'), '/d3728609a34047d789e7252876061fc7')]",
-      "location": "West Europe",
-      "dependsOn": [
-        "[resourceId('Microsoft.Web/sites', parameters('function_account_name'))]"
-      ],
-      "properties": {
-        "id": "d3728609a34047d789e7252876061fc7",
-        "status": 4,
-        "author_email": "N/A",
-        "author": "VS Code",
-        "deployer": "Push-Deployer",
-        "message": "Created via a push deployment",
-        "start_time": "2019-09-05T14:42:29.828123Z",
-        "end_time": "2019-09-05T14:43:31.7536395Z",
-        "active": false
-      }
-    },
-    {
       "type": "Microsoft.Web/sites/hostNameBindings",
       "apiVersion": "2016-08-01",
       "name": "[concat(parameters('function_account_name'), '/', parameters('function_account_name'), '.azurewebsites.net')]",
