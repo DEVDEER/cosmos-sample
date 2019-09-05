@@ -7,12 +7,12 @@ module.exports = function (context, input) {
     const config = {
         authentication: {
             options: {
-                userName: 'devdeer-admin',
-                password: 'EpZFZuppSiT$nwOERwqhk'
+                userName: process.env["SqlServerUser"],
+                password: process.env["SqlServerPassword"]
             },
             type: 'default'
         },
-        server: 'sql-dd-ms-test.database.windows.net',
+        server: process.env["SqlServerAddress"],
         options: {
             database: 'test', 
             encrypt: true,
@@ -44,7 +44,7 @@ module.exports = function (context, input) {
             });            
             try {
                 bulkLoad.addColumn('ProductId', Types.BigInt, { nullable: false });
-                bulkLoad.addColumn('OrderDate', Types.DateTimeOffset, { scale: 7, nullable: true });
+                bulkLoad.addColumn('OrderDate', Types.VarChar, { scale: 7, nullable: true });
                 bulkLoad.addColumn('CustomerLogin', Types.NVarChar, { length: 500, nullable: false });            
                 bulkLoad.addColumn('Amount', Types.Int, { nullable: false });            
                 // add row for each input element
@@ -52,7 +52,7 @@ module.exports = function (context, input) {
                 input.forEach(function(o) {
                     bulkLoad.addRow({ 
                         ProductId: o.productId, 
-                        OrderDate: new Date(Date.parse(o.timeStamp)),
+                        OrderDate: o.timeStamp,
                         CustomerLogin: o.customerLogin,
                         Amount: o.amount 
                     });            
