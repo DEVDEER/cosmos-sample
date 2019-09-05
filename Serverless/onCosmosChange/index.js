@@ -7,12 +7,12 @@ module.exports = function (context, input) {
     const config = {
         authentication: {
             options: {
-                userName: process.env["SqlServerUser"],
-                password: process.env["SqlServerPassword"]
+                userName: process.env["SQL_SERVER_USER"],
+                password: process.env["SQL_SERVER_PASSWORD"]
             },
             type: 'default'
         },
-        server: process.env["SqlServerAddress"],
+        server: process.env["SQL_SERVER_ADDRESS"],
         options: {
             database: 'test', 
             encrypt: true,
