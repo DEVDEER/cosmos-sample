@@ -19,8 +19,12 @@ namespace devdeer.CosmosSample.Ui.CreationConsole
     {
         #region constants
 
+        private const int CurrentCollectionThroughput = 2000;
+        private const int DegreeOfParallelism = -1;
+        private const int ItemsPerTask = 300;
+        private const int MinThreadPoolSize = 100;
+
         private static long _documentsInserted;
-        private static readonly int _minThreadPoolSize = 100;
 
         private static int _pendingTaskCount;
         private static readonly ConcurrentDictionary<int, double> RequestUnitsConsumed = new ConcurrentDictionary<int, double>();
@@ -68,19 +72,16 @@ namespace devdeer.CosmosSample.Ui.CreationConsole
 
         private static async Task InsertDocumentsAsync(DocumentClient client, long numberOfDocumentsToInsert)
         {
-            var currentCollectionThroughput = 2000;
-            var itemsPerTask = 300;
             var taskCount = 0;
-            var degreeOfParallelism = -1;
-            if (degreeOfParallelism == -1)
+            if (DegreeOfParallelism == -1)
             {
                 // set TaskCount = 10 for each 10k RUs, minimum 1, maximum 250
-                taskCount = Math.Max(currentCollectionThroughput / itemsPerTask, 1);
+                taskCount = Math.Max(CurrentCollectionThroughput / ItemsPerTask, 1);
                 taskCount = Math.Min(taskCount, 250);
             }
             else
             {
-                taskCount = degreeOfParallelism;
+                taskCount = DegreeOfParallelism;
             }
             Console.WriteLine($"Using {taskCount} parallel tasks.");
             _pendingTaskCount = taskCount;
@@ -88,9 +89,16 @@ namespace devdeer.CosmosSample.Ui.CreationConsole
             {
                 LogOutputStats()
             };
+            var documentsPerTask = numberOfDocumentsToInsert / taskCount;
+            var lastTaskAdd = numberOfDocumentsToInsert % taskCount;
             for (var i = 0; i < taskCount; i++)
             {
-                tasks.Add(InsertDocumentAsync(i, client, numberOfDocumentsToInsert));
+                var docs = documentsPerTask;
+                if (i == taskCount - 1)
+                {
+                    docs += lastTaskAdd;
+                }
+                tasks.Add(InsertDocumentAsync(i, client, docs));
             }
             await Task.WhenAll(tasks);
             Console.WriteLine("Done");
@@ -145,7 +153,7 @@ namespace devdeer.CosmosSample.Ui.CreationConsole
 
         private static async Task Main(string[] args)
         {
-            ThreadPool.SetMinThreads(_minThreadPoolSize, _minThreadPoolSize);
+            ThreadPool.SetMinThreads(MinThreadPoolSize, MinThreadPoolSize);
             var connectionPolicy = new ConnectionPolicy
             {
                 ConnectionMode = ConnectionMode.Direct,
@@ -163,7 +171,7 @@ namespace devdeer.CosmosSample.Ui.CreationConsole
                 "zF5NUhiFmVXbFT4veJbE5YakKAFcVL3zNlqGck12zRhAWqBUPtq2gh25lMJ6JIjVbqDKIWAVg2UKBau9CEwXcA==",
                 connectionPolicy))
             {
-                await InsertDocumentsAsync(client, 10000);
+                await InsertDocumentsAsync(client, 5000);
                 Console.WriteLine("DocumentDBBenchmark completed successfully.");
             }
             Console.WriteLine("Finished");
