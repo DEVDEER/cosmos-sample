@@ -74,9 +74,6 @@
       "apiVersion": "2015-05-01",
       "name": "[parameters('application_insights_name')]",
       "location": "westeurope",
-      "tags": {
-        "hidden-link:/subscriptions/bfa76d23-ddc3-44dd-95a1-597cb239b635/resourceGroups/rg-ms-test/providers/Microsoft.Web/sites/func-dd-ms-test": "Resource"
-      },
       "kind": "web",
       "properties": {
         "Application_Type": "web",
@@ -149,88 +146,6 @@
       }
     },
     {
-      "type": "Microsoft.Sql/servers/advisors",
-      "apiVersion": "2014-04-01",
-      "name": "[concat(parameters('sql_server_name'), '/CreateIndex')]",
-      "dependsOn": [
-        "[resourceId('Microsoft.Sql/servers', parameters('sql_server_name'))]"
-      ],
-      "properties": {
-        "autoExecuteValue": "Disabled"
-      }
-    },
-    {
-      "type": "Microsoft.Sql/servers/advisors",
-      "apiVersion": "2014-04-01",
-      "name": "[concat(parameters('sql_server_name'), '/DbParameterization')]",
-      "dependsOn": [
-        "[resourceId('Microsoft.Sql/servers', parameters('sql_server_name'))]"
-      ],
-      "properties": {
-        "autoExecuteValue": "Disabled"
-      }
-    },
-    {
-      "type": "Microsoft.Sql/servers/advisors",
-      "apiVersion": "2014-04-01",
-      "name": "[concat(parameters('sql_server_name'), '/DefragmentIndex')]",
-      "dependsOn": [
-        "[resourceId('Microsoft.Sql/servers', parameters('sql_server_name'))]"
-      ],
-      "properties": {
-        "autoExecuteValue": "Disabled"
-      }
-    },
-    {
-      "type": "Microsoft.Sql/servers/advisors",
-      "apiVersion": "2014-04-01",
-      "name": "[concat(parameters('sql_server_name'), '/DropIndex')]",
-      "dependsOn": [
-        "[resourceId('Microsoft.Sql/servers', parameters('sql_server_name'))]"
-      ],
-      "properties": {
-        "autoExecuteValue": "Disabled"
-      }
-    },
-    {
-      "type": "Microsoft.Sql/servers/advisors",
-      "apiVersion": "2014-04-01",
-      "name": "[concat(parameters('sql_server_name'), '/ForceLastGoodPlan')]",
-      "dependsOn": [
-        "[resourceId('Microsoft.Sql/servers', parameters('sql_server_name'))]"
-      ],
-      "properties": {
-        "autoExecuteValue": "Disabled"
-      }
-    },
-    {
-      "type": "Microsoft.Sql/servers/auditingPolicies",
-      "apiVersion": "2014-04-01",
-      "name": "[concat(parameters('sql_server_name'), '/Default')]",
-      "location": "West Europe",
-      "dependsOn": [
-        "[resourceId('Microsoft.Sql/servers', parameters('sql_server_name'))]"
-      ],
-      "properties": {
-        "auditingState": "Disabled"
-      }
-    },
-    {
-      "type": "Microsoft.Sql/servers/auditingSettings",
-      "apiVersion": "2017-03-01-preview",
-      "name": "[concat(parameters('sql_server_name'), '/Default')]",
-      "dependsOn": [
-        "[resourceId('Microsoft.Sql/servers', parameters('sql_server_name'))]"
-      ],
-      "properties": {
-        "state": "Disabled",
-        "retentionDays": 0,
-        "auditActionsAndGroups": [],
-        "storageAccountSubscriptionId": "00000000-0000-0000-0000-000000000000",
-        "isStorageSecondaryKeyInUse": false
-      }
-    },
-    {
       "type": "Microsoft.Sql/servers/databases",
       "apiVersion": "2017-03-01-preview",
       "name": "[concat(parameters('sql_server_name'), '/test')]",
@@ -248,131 +163,6 @@
         "maxSizeBytes": 2147483648,
         "catalogCollation": "SQL_Latin1_General_CP1_CI_AS",
         "zoneRedundant": false
-      }
-    },
-    {
-      "type": "Microsoft.Sql/servers/databases/auditingPolicies",
-      "apiVersion": "2014-04-01",
-      "name": "[concat(parameters('sql_server_name'), '/master/Default')]",
-      "location": "West Europe",
-      "dependsOn": [
-        "[resourceId('Microsoft.Sql/servers', parameters('sql_server_name'))]"
-      ],
-      "properties": {
-        "auditingState": "Disabled"
-      }
-    },
-    {
-      "type": "Microsoft.Sql/servers/databases/auditingSettings",
-      "apiVersion": "2017-03-01-preview",
-      "name": "[concat(parameters('sql_server_name'), '/master/Default')]",
-      "dependsOn": [
-        "[resourceId('Microsoft.Sql/servers', parameters('sql_server_name'))]"
-      ],
-      "properties": {
-        "state": "Disabled",
-        "retentionDays": 0,
-        "storageAccountSubscriptionId": "00000000-0000-0000-0000-000000000000",
-        "isStorageSecondaryKeyInUse": false
-      }
-    },
-    {
-      "type": "Microsoft.Sql/servers/databases/extendedAuditingSettings",
-      "apiVersion": "2017-03-01-preview",
-      "name": "[concat(parameters('sql_server_name'), '/master/Default')]",
-      "dependsOn": [
-        "[resourceId('Microsoft.Sql/servers', parameters('sql_server_name'))]"
-      ],
-      "properties": {
-        "state": "Disabled",
-        "retentionDays": 0,
-        "storageAccountSubscriptionId": "00000000-0000-0000-0000-000000000000",
-        "isStorageSecondaryKeyInUse": false
-      }
-    },
-    {
-      "type": "Microsoft.Sql/servers/databases/geoBackupPolicies",
-      "apiVersion": "2014-04-01",
-      "name": "[concat(parameters('sql_server_name'), '/master/Default')]",
-      "location": "West Europe",
-      "dependsOn": [
-        "[resourceId('Microsoft.Sql/servers', parameters('sql_server_name'))]"
-      ],
-      "properties": {
-        "state": "Enabled"
-      }
-    },
-    {
-      "type": "Microsoft.Sql/servers/databases/securityAlertPolicies",
-      "apiVersion": "2018-06-01-preview",
-      "name": "[concat(parameters('sql_server_name'), '/master/Default')]",
-      "dependsOn": [
-        "[resourceId('Microsoft.Sql/servers', parameters('sql_server_name'))]"
-      ],
-      "properties": {
-        "state": "Disabled",
-        "disabledAlerts": [
-          ""
-        ],
-        "emailAddresses": [
-          ""
-        ],
-        "emailAccountAdmins": false,
-        "retentionDays": 0
-      }
-    },
-    {
-      "type": "Microsoft.Sql/servers/databases/transparentDataEncryption",
-      "apiVersion": "2014-04-01",
-      "name": "[concat(parameters('sql_server_name'), '/master/current')]",
-      "location": "West Europe",
-      "dependsOn": [
-        "[resourceId('Microsoft.Sql/servers', parameters('sql_server_name'))]"
-      ],
-      "properties": {
-        "status": "Disabled"
-      }
-    },
-    {
-      "type": "Microsoft.Sql/servers/databases/vulnerabilityAssessments",
-      "apiVersion": "2017-03-01-preview",
-      "name": "[concat(parameters('sql_server_name'), '/master/Default')]",
-      "dependsOn": [
-        "[resourceId('Microsoft.Sql/servers', parameters('sql_server_name'))]"
-      ],
-      "properties": {
-        "recurringScans": {
-          "isEnabled": false,
-          "emailSubscriptionAdmins": true
-        }
-      }
-    },
-    {
-      "type": "Microsoft.Sql/servers/encryptionProtector",
-      "apiVersion": "2015-05-01-preview",
-      "name": "[concat(parameters('sql_server_name'), '/current')]",
-      "dependsOn": [
-        "[resourceId('Microsoft.Sql/servers', parameters('sql_server_name'))]"
-      ],
-      "kind": "servicemanaged",
-      "properties": {
-        "serverKeyName": "ServiceManaged",
-        "serverKeyType": "ServiceManaged"
-      }
-    },
-    {
-      "type": "Microsoft.Sql/servers/extendedAuditingSettings",
-      "apiVersion": "2017-03-01-preview",
-      "name": "[concat(parameters('sql_server_name'), '/Default')]",
-      "dependsOn": [
-        "[resourceId('Microsoft.Sql/servers', parameters('sql_server_name'))]"
-      ],
-      "properties": {
-        "state": "Disabled",
-        "retentionDays": 0,
-        "auditActionsAndGroups": [],
-        "storageAccountSubscriptionId": "00000000-0000-0000-0000-000000000000",
-        "isStorageSecondaryKeyInUse": false
       }
     },
     {
@@ -397,39 +187,6 @@
       "kind": "servicemanaged",
       "properties": {
         "serverKeyType": "ServiceManaged"
-      }
-    },
-    {
-      "type": "Microsoft.Sql/servers/securityAlertPolicies",
-      "apiVersion": "2017-03-01-preview",
-      "name": "[concat(parameters('sql_server_name'), '/Default')]",
-      "dependsOn": [
-        "[resourceId('Microsoft.Sql/servers', parameters('sql_server_name'))]"
-      ],
-      "properties": {
-        "state": "Disabled",
-        "disabledAlerts": [
-          ""
-        ],
-        "emailAddresses": [
-          ""
-        ],
-        "emailAccountAdmins": false,
-        "retentionDays": 0
-      }
-    },
-    {
-      "type": "Microsoft.Sql/servers/vulnerabilityAssessments",
-      "apiVersion": "2018-06-01-preview",
-      "name": "[concat(parameters('sql_server_name'), '/Default')]",
-      "dependsOn": [
-        "[resourceId('Microsoft.Sql/servers', parameters('sql_server_name'))]"
-      ],
-      "properties": {
-        "recurringScans": {
-          "isEnabled": false,
-          "emailSubscriptionAdmins": true
-        }
       }
     },
     {
@@ -513,7 +270,7 @@
         "httpLoggingEnabled": false,
         "logsDirectorySizeLimit": 35,
         "detailedErrorLoggingEnabled": false,
-        "publishingUsername": "$func-dd-ms-test",
+        "publishingUsername": "$[concat(parameters('$', 'function_account_name'))]",
         "scmType": "None",
         "use32BitWorkerProcess": true,
         "webSocketsEnabled": false,
@@ -590,7 +347,7 @@
         "[resourceId('Microsoft.Web/sites', parameters('function_account_name'))]"
       ],
       "properties": {
-        "siteName": "func-dd-ms-test",
+        "siteName": "[parameters('function_account_name')]",
         "hostNameType": "Verified"
       }
     },
