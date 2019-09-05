@@ -37,10 +37,10 @@ param(
  $ResourceGroupLocation,
 
  [string]
- $TemplateFilePath = "template.json",
+ $TemplateFilePath = "azuredeploy.json",
 
  [string]
- $ParametersFilePath = "parameters.json"
+ $ParametersFilePath = "azuredeploy.parameters.json"
 )
 
 $AzModuleVersion = "2.0.0"

@@ -10,6 +10,14 @@
       "defaultValue": "sql-",
       "type": "String"
     },
+    "sql_server_user": {
+      "defaultValue": "some-admin",
+      "type": "String"
+    },
+    "sql_server_password": {
+      "defaultValue": "",
+      "type": "String"
+    },
     "app_service_plan_name": {
       "defaultValue": "asp-",
       "type": "String"
@@ -83,7 +91,8 @@
       "location": "westeurope",
       "kind": "v12.0",
       "properties": {
-        "administratorLogin": "devdeer-admin",
+        "administratorLogin": "[parameters('sql_server_user')]",
+        "administratorLoginPassword": "[parameters('sql_server_password')]",
         "version": "12.0"
       }
     },
@@ -376,30 +385,6 @@
       "properties": {
         "startIpAddress": "0.0.0.0",
         "endIpAddress": "0.0.0.0"
-      }
-    },
-    {
-      "type": "Microsoft.Sql/servers/firewallRules",
-      "apiVersion": "2015-05-01-preview",
-      "name": "[concat(parameters('sql_server_name'), '/BYTEBITTER_2019-09-03_03:19:15')]",
-      "dependsOn": [
-        "[resourceId('Microsoft.Sql/servers', parameters('sql_server_name'))]"
-      ],
-      "properties": {
-        "startIpAddress": "84.176.53.46",
-        "endIpAddress": "84.176.53.46"
-      }
-    },
-    {
-      "type": "Microsoft.Sql/servers/firewallRules",
-      "apiVersion": "2015-05-01-preview",
-      "name": "[concat(parameters('sql_server_name'), '/BYTEBITTER_2019-09-04_11:19:32')]",
-      "dependsOn": [
-        "[resourceId('Microsoft.Sql/servers', parameters('sql_server_name'))]"
-      ],
-      "properties": {
-        "startIpAddress": "84.146.7.94",
-        "endIpAddress": "84.146.7.94"
       }
     },
     {
