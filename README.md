@@ -7,6 +7,13 @@ The intend of this project is to demonstrate a way to use Cosmos Change Feed in 
 
 The reason for this is that it is relatively expensive to perform aggregations on CosmosDB and therefore it might be a good idea to extract certain informations of Cosmos-Documents into another storage.
 
+## Content
+
+This repo contains 3 projects mainly:
+- Azure: Contains the scripts to build up a single resource group containing all resources needed.
+- Serverless: Contains a VS Code project containing the Azure Function
+- Ui.CreationConsole: Contains a .NET Core Console Application which can be used to add a bulk of documents to Cosmos DB
+
 ## Step-By-Step
 
 ### Prepare your Azure Subscription
@@ -32,12 +39,3 @@ After some time a new resource group is created under the provided subscription.
 ### Deploy Function App
 
 TODO
-
-### 
-
-## Content
-
-This repo contains 3 projects mainly:
-- Azure.ResourceGroup: Contains the ARM template including scripts to execute it.
-- Serverless: Contains a VS Code project containing the Azure Function
-- Ui.CreationConsole: Contains a .NET Core Console Application which can be used to add a bulk of documents to Cosmos DB
